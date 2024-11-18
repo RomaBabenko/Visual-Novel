@@ -1,0 +1,176 @@
+@set ZoeFirstDialog=false
+@set MiniGameCompleted=false
+@set ItemReceived=false
+@set VisitAfterReceivingItem=true
+@set ZoeHappy=false
+@set ZoeUnhappy=false
+@set MiaHappy=false
+@set MiaUnhappy=false
+
+@bgm MainAudio
+
+@back BgInput
+@input playerName summary:"Введите свое имя."
+@stop
+
+# Location1
+
+@back Location1
+
+@if !ZoeFirstDialog
+    @char Zoe
+    @toast "Поговорить с Mia" appearance:warning time:-1
+    Незнакомка: Привет, {playerName}, нет времени объяснять кто я, тебе нужно срочно отправиться вниз по улице и поговорить с Mia
+    @hideAll
+    @set ZoeFirstDialog=true
+@endif
+
+@if !VisitAfterReceivingItem
+    @char Zoe pose:default pos:27,-5
+    @char Mia pose:default pos:75,-5
+    @toast "Идите в Location1" appearance:success time:2
+    {playerName}: Наконц-то я вас нашел.
+    Mia: Ты нашел предмет?
+    {playerName}: Да, это было не легко.
+    Zoe: Супер и что ты будешь с ним делать?
+    @choice "Отдать Zoe" handler:ButtonArea button:ChoiceButton/GiveZoe goto:.ZoeHappy
+    @choice "Отдать Mia" handler:ButtonArea button:ChoiceButton/GiveMia goto:.MiaHappy
+    @choice "Оставить себе" handler:ButtonArea button:ChoiceButton/KeepYourself goto:.PlyerHappy
+    @set VisitAfterReceivingItem=true
+    @stop
+@endif
+
+@if ZoeHappy
+    @char Zoe
+    Zoe: Возвращайся немного позже и я тебя отблагодарю.
+    @choice handler:ButtonArea button:ChoiceButton/MapButton goto:.Map
+    @stop
+@endif
+
+@if ZoeUnhappy
+    @char Zoe
+    Zoe: Я тебе уже сказала не приближайся ко мне.
+    @choice handler:ButtonArea button:ChoiceButton/MapButton goto:.Map
+    @stop
+@endif
+
+@hideAll
+@sfx WalkStreet
+@back Street wait:true
+@wait 1.5
+
+# Location2
+
+@back Location2
+
+@if !MiniGameCompleted
+    @char Mia
+    @toast "Поговорить с Mia" appearance:success time:3
+    Незнакомка: Если ты тут значит уже встретил Zoe 
+    Mia: Привет, {playerName}, меня зовут Mia, у меня есть к тебе работенка 
+    @toast "Выполнить работу" appearance:warning time:-1
+    {playerName}: Какая?
+    Mia: Сейчас сам увидишь.
+    @startMiniGame
+    {playerName}: Все готово.
+    @toast "Выполнить работу" appearance:success time:2
+    Mia: Отлично, теперь иди прямо по улицу и поверни налево и забери свою награду
+    @toast "Забрать награду" appearance:warning time:-1
+    {playerName}: Окей, удачи.
+    @hideAll
+    @set MiniGameCompleted=true
+@endif
+
+@if !VisitAfterReceivingItem
+    @toast "Идите в Location2" appearance:success time:2
+    @back Location2
+    {playerName}: Хм, странно где она?.
+    @toast "Идите в Location1" appearance:warning time:-1
+    {playerName}: Может она в Location1?.
+    @choice handler:ButtonArea button:ChoiceButton/MapButton goto:.Map
+    @stop
+@endif
+
+@if MiaHappy
+    @char Mia
+    Mia: Возвращайся немного позже и я тебя отблагодарю.
+    @choice handler:ButtonArea button:ChoiceButton/MapButton goto:.Map
+    @stop
+@endif
+
+@if MiaUnhappy
+    @char Mia
+    Mia: Я тебе уже сказала не приближайся ко мне.
+    @choice handler:ButtonArea button:ChoiceButton/MapButton goto:.Map
+    @stop
+@endif
+
+@sfx WalkStreet
+@back Street wait:true
+@wait 1.5
+
+#Location3
+
+@if ItemReceived
+    {playerName}: Я уже там был.
+    @goto .Map
+@endif
+
+@if !ItemReceived
+    @back Location3
+    @choice handler:ButtonArea button:ChoiceButton/Bluster
+    {playerName}: Наверное это та награда о которой говорила Mia.
+    @toast "Забрать награду" appearance:success time:2
+    {playerName}: Хм, полезная вещь.
+    {playerName}: Нужно найти Mia.
+    @toast "Идите в Location2" appearance:warning time:-1
+    @set ItemReceived=true
+    @set VisitAfterReceivingItem=false
+    @choice handler:ButtonArea button:ChoiceButton/MapButton goto:.Map
+    @stop
+@endif
+
+# Map
+
+@hideAll
+@back Map
+@choice handler:ButtonArea button:ChoiceButton/Location1 goto:.Location1
+@choice handler:ButtonArea button:ChoiceButton/Location2 goto:.Location2
+@choice handler:ButtonArea button:ChoiceButton/Location3 goto:.Location3  
+@stop
+
+#ZoeHappy
+
+@set ZoeHappy=true
+@set MiaUnhappy=true
+Zoe: Класс обожаю тебя.
+Mia: Все с тобой понятно.
+@hide Zoe
+@hide Mia
+{playerName}: Даа, не очень хорошо получилось, надеюсь я об этом не пожалею.
+@choice handler:ButtonArea button:ChoiceButton/MapButton goto:.Map
+@stop
+
+#MiaHappy
+
+@set ZoeUnhappy=true
+@set MiaHappy=true
+Zoe: Не попадайся лучше мне на глаза.
+Mia: Ты мой герой.
+@hide Zoe
+@hide Mia
+{playerName}: Даа, не очень хорошо получилось, надеюсь я об этом не пожалею.
+@choice handler:ButtonArea button:ChoiceButton/MapButton goto:.Map
+@stop
+
+#PlyerHappy
+
+@set ZoeUnhappy=true
+@set MiaUnhappy=true
+Zoe: Если встречу убью.
+Mia: Полностью поддерживаю.
+@hide Zoe
+@hide Mia
+{playerName}: Даа, не очень хорошо получилось, надеюсь я об этом не пожалею.
+@choice handler:ButtonArea button:ChoiceButton/MapButton goto:.Map
+@stop

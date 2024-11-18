@@ -1,0 +1,175 @@
+; Russian (Russia) <ru-RU> to Russian (Russia) <ru-RU> localization document for `Scenario` naninovel script
+
+# f6757ec7
+; @input playerName summary:"Введите свое имя."
+
+# 1ec84db8
+;     @toast "Поговорить с Mia" appearance:warning time:-1
+
+# 9fc4380d
+;     Незнакомка: Привет, {playerName}, нет времени объяснять кто я, тебе нужно срочно отправиться вниз по улице и поговорить с Mia
+
+# c102eaa0
+;     @toast "Идите в Location1" appearance:success time:2
+
+# b4a9977f
+;     {playerName}: Наконц-то я вас нашел.
+
+# e91092ad
+;     Mia: Ты нашел предмет?
+
+# e9e0b941
+;     {playerName}: Да, это было не легко.
+
+# 6a570214
+;     Zoe: Супер и что ты будешь с ним делать?
+
+# ee8b19b
+;     @choice "Отдать Zoe" handler:ButtonArea button:ChoiceButton/GiveZoe goto:.ZoeHappy
+
+# bf96bce8
+;     @choice "Отдать Mia" handler:ButtonArea button:ChoiceButton/GiveMia goto:.MiaHappy
+
+# f010ca9
+;     @choice "Оставить себе" handler:ButtonArea button:ChoiceButton/KeepYourself goto:.PlyerHappy
+
+# 90cef893
+;     Zoe: Возвращайся немного позже и я тебя отблагодарю.
+
+# a9d40826
+;     @choice handler:ButtonArea button:ChoiceButton/MapButton goto:.Map
+
+# 66cd7ec7
+;     Zoe: Я тебе уже сказала не приближайся ко мне.
+
+# a9d40826
+;     @choice handler:ButtonArea button:ChoiceButton/MapButton goto:.Map
+
+# 6b8cd55d
+;     @toast "Поговорить с Mia" appearance:success time:3
+
+# 5ca4489c
+;     Незнакомка: Если ты тут значит уже встретил Zoe 
+
+# 7809c224
+;     Mia: Привет, {playerName}, меня зовут Mia, у меня есть к тебе работенка 
+
+# 5a08e0c7
+;     @toast "Выполнить работу" appearance:warning time:-1
+
+# f21aa086
+;     {playerName}: Какая?
+
+# d2be91eb
+;     Mia: Сейчас сам увидишь.
+
+# ed7c0cfc
+;     {playerName}: Все готово.
+
+# 30be85e0
+;     @toast "Выполнить работу" appearance:success time:2
+
+# 7ae14dda
+;     Mia: Отлично, теперь иди прямо по улицу и поверни налево и забери свою награду
+
+# 485ad78b
+;     @toast "Забрать награду" appearance:warning time:-1
+
+# 5f154c36
+;     {playerName}: Окей, удачи.
+
+# 3f04de81
+;     @toast "Идите в Location2" appearance:success time:2
+
+# 80bf2b9b
+;     {playerName}: Хм, странно где она?.
+
+# 67b4fce4
+;     @toast "Идите в Location1" appearance:warning time:-1
+
+# f4ed21f5
+;     {playerName}: Может она в Location1?.
+
+# a9d40826
+;     @choice handler:ButtonArea button:ChoiceButton/MapButton goto:.Map
+
+# 69c78cec
+;     Mia: Возвращайся немного позже и я тебя отблагодарю.
+
+# a9d40826
+;     @choice handler:ButtonArea button:ChoiceButton/MapButton goto:.Map
+
+# 51823af
+;     Mia: Я тебе уже сказала не приближайся ко мне.
+
+# a9d40826
+;     @choice handler:ButtonArea button:ChoiceButton/MapButton goto:.Map
+
+# 9b152a4a
+;     {playerName}: Я уже там был.
+
+# b32a1c6c
+;     @choice handler:ButtonArea button:ChoiceButton/Bluster
+
+# 7a7775a2
+;     {playerName}: Наверное это та награда о которой говорила Mia.
+
+# 97e3b22d
+;     @toast "Забрать награду" appearance:success time:2
+
+# 5094dd
+;     {playerName}: Хм, полезная вещь.
+
+# e7747b49
+;     {playerName}: Нужно найти Mia.
+
+# 81a392bc
+;     @toast "Идите в Location2" appearance:warning time:-1
+
+# a9d40826
+;     @choice handler:ButtonArea button:ChoiceButton/MapButton goto:.Map
+
+# bb678f98
+; @choice handler:ButtonArea button:ChoiceButton/Location1 goto:.Location1
+
+# 4014712e
+; @choice handler:ButtonArea button:ChoiceButton/Location2 goto:.Location2
+
+# 6ca49e81
+; @choice handler:ButtonArea button:ChoiceButton/Location3 goto:.Location3  
+
+# 251ff178
+; Zoe: Класс обожаю тебя.
+
+# dc57c05e
+; Mia: Все с тобой понятно.
+
+# 3f6a2a3c
+; {playerName}: Даа, не очень хорошо получилось, надеюсь я об этом не пожалею.
+
+# a9d40826
+; @choice handler:ButtonArea button:ChoiceButton/MapButton goto:.Map
+
+# 532a53e0
+; Zoe: Не попадайся лучше мне на глаза.
+
+# 77cb11bc
+; Mia: Ты мой герой.
+
+# 3f6a2a3c
+; {playerName}: Даа, не очень хорошо получилось, надеюсь я об этом не пожалею.
+
+# a9d40826
+; @choice handler:ButtonArea button:ChoiceButton/MapButton goto:.Map
+
+# 7b000a52
+; Zoe: Если встречу убью.
+
+# 766ef0f8
+; Mia: Полностью поддерживаю.
+
+# 3f6a2a3c
+; {playerName}: Даа, не очень хорошо получилось, надеюсь я об этом не пожалею.
+
+# a9d40826
+; @choice handler:ButtonArea button:ChoiceButton/MapButton goto:.Map

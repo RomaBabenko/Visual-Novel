@@ -1,0 +1,4 @@
+; Russian (Russia) <ru-RU> to English <en> localization document for `CharacterNames` managed text document
+
+Mia: Mia
+Zoe: Zoe

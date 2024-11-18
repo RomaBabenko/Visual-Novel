@@ -1,0 +1,3 @@
+@bgm GirlAudio loop:false
+@back LoadingLogo time:3
+@stop
